@@ -32,6 +32,7 @@ These are the diagrams that show how your tables are related to one another (one
 ``` Profile Table ->------<- Profile_Concert Join Table ```
 ``` A profile has many concerts and a concert has many profiles```
 
+
 ## Routing
 
 What routes will you need to be able to make the proper request to your API?
@@ -43,3 +44,4 @@ What routes will you need to be able to make the proper request to your API?
 
   resources :profiles, except: [:new, :edit]
   ???? for :profiles no index??
+
