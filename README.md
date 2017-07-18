@@ -31,3 +31,17 @@ These are the diagrams that show how your tables are related to one another (one
 
 ``` Profile Table ->------<- Profile_Concert Join Table ```
 ``` A profile has many concerts and a concert has many profiles```
+
+
+## Routing
+
+What routes will you need to be able to make the proper request to your API?
+
+  post '/sign-up' => 'users#signup'
+  post '/sign-in' => 'users#signin'
+  delete '/sign-out/:id' => 'users#signout'
+  patch '/change-password/:id' => 'users#changepw'
+
+  resources :profiles, except: [:new, :edit]
+  ???? for :profiles no index??
+
