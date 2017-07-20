@@ -16,7 +16,7 @@ Note: I used the following website to help with setting up a 'friends' relations
 
 
 In a future release, additional table for Venue and Artist will be created.
-
+``
 
 ERD (entity relationship diagram)
 
@@ -44,4 +44,3 @@ What routes will you need to be able to make the proper request to your API?
 
   resources :profiles, except: [:new, :edit]
   ???? for :profiles no index??
-

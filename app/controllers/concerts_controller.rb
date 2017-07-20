@@ -1,4 +1,4 @@
-class ConcertsController < OpenReadController
+class ConcertsController < ApplicationController
   before_action :set_concert, only: [:show, :update, :destroy]
 
   # GET /concerts
@@ -16,6 +16,7 @@ class ConcertsController < OpenReadController
   # POST /concerts
   def create
     @concert = current_user.concerts.build(concert_params)
+    # @concert = Concert.new(concert_params)
 
     if @concert.save
       render json: @concert, status: :created, location: @concert
@@ -46,6 +47,6 @@ class ConcertsController < OpenReadController
 
     # Only allow a trusted parameter "white list" through.
     def concert_params
-      params.require(:concert).permit(:concert_name, :concert_date, :concert_time, :artist, :venue, :venue_address, :cost)
+      params.require(:concert).permit(:concert_name, :concert_date, :concert_time,  :artist, :venue, :venue_address, :cost)
     end
 end

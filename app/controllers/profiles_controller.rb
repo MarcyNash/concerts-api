@@ -3,7 +3,8 @@ class ProfilesController < OpenReadController
 
   # GET /profiles
   def index
-    @profiles = Profile.all
+    # @profiles = Profile.all
+    @profiles = current_user.profiles
 
     render json: @profiles
   end
@@ -39,13 +40,15 @@ class ProfilesController < OpenReadController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_profile
-      @profile = Profile.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def profile_params
-      params.require(:profile).permit(:user_name, :about_me)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_profile
+    # @profile = Profile.find(params[:id])
+    @profile = current_user.profiles.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def profile_params
+    params.require(:profile).permit(:user_name, :about_me)
+  end
 end
