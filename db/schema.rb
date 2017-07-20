@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718202431) do
+ActiveRecord::Schema.define(version: 20170720133515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20170718202431) do
     t.decimal  "cost"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_concerts_on_user_id", using: :btree
   end
 
   create_table "examples", force: :cascade do |t|
@@ -33,6 +35,15 @@ ActiveRecord::Schema.define(version: 20170718202431) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_examples_on_user_id", using: :btree
+  end
+
+  create_table "myconcerts", force: :cascade do |t|
+    t.integer  "profile_id", null: false
+    t.integer  "concert_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["concert_id"], name: "index_myconcerts_on_concert_id", using: :btree
+    t.index ["profile_id"], name: "index_myconcerts_on_profile_id", using: :btree
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -54,6 +65,9 @@ ActiveRecord::Schema.define(version: 20170718202431) do
     t.index ["token"], name: "index_users_on_token", unique: true, using: :btree
   end
 
+  add_foreign_key "concerts", "users"
   add_foreign_key "examples", "users"
+  add_foreign_key "myconcerts", "concerts"
+  add_foreign_key "myconcerts", "profiles"
   add_foreign_key "profiles", "users"
 end

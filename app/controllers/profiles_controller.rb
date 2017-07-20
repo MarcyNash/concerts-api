@@ -4,9 +4,9 @@ class ProfilesController < OpenReadController
   # GET /profiles
   def index
     # @profiles = Profile.all
-    @profiles = current_user.profiles
+    @profile = current_user.profile
 
-    render json: @profiles
+    render json: @profile
   end
 
   # GET /profiles/1
@@ -16,7 +16,19 @@ class ProfilesController < OpenReadController
 
   # POST /profiles
   def create
-    @profile = current_user.profiles.build(profile_params)
+    # binding.pry
+    # Profile.create(
+    # { user: current_user,
+    #     user_name: params[:user_name],
+    #
+    #   })
+
+    @profile = Profile.create(profile_params)
+    current_user.profile = @profile
+
+    # binding pry
+
+    # Profile.create({user: current_user}) user_name: '11Fun'})
 
     if @profile.save
       render json: @profile, status: :created, location: @profile

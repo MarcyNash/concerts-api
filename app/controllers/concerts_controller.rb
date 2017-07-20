@@ -15,8 +15,8 @@ class ConcertsController < ApplicationController
 
   # POST /concerts
   def create
-    @concert = current_user.concerts.build(concert_params)
-    # @concert = Concert.new(concert_params)
+    # @concert = current_user.concerts.build(concert_params)
+    @concert = Concert.new(concert_params)
 
     if @concert.save
       render json: @concert, status: :created, location: @concert
