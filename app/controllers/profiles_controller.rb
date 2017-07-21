@@ -1,5 +1,5 @@
 class ProfilesController < OpenReadController
-  before_action :set_profile, only: [:show, :update, :destroy]
+  before_action :set_profile, only:[:update,:destroy]
 
   # GET /profiles
   def index
@@ -11,24 +11,13 @@ class ProfilesController < OpenReadController
 
   # GET /profiles/1
   def show
-    render json: @profile
+    render json: current_user.profile
   end
 
   # POST /profiles
   def create
-    # binding.pry
-    # Profile.create(
-    # { user: current_user,
-    #     user_name: params[:user_name],
-    #
-    #   })
-
     @profile = Profile.create(profile_params)
     current_user.profile = @profile
-
-    # binding pry
-
-    # Profile.create({user: current_user}) user_name: '11Fun'})
 
     if @profile.save
       render json: @profile, status: :created, location: @profile
