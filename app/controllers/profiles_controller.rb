@@ -6,6 +6,7 @@ class ProfilesController < OpenReadController
     # @profiles = Profile.all
     @profile = current_user.profile
 
+    # render json: @profiles
     render json: @profile
   end
 
