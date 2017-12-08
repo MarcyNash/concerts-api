@@ -4,10 +4,12 @@ class ProfilesController < OpenReadController
   # GET /profiles
   def index
     # @profiles = Profile.all
-    @profile = current_user.profile
+    @profiles = Profile.all.where.not(
+      id: current_user.profile[:id]
+    )
 
     # render json: @profiles
-    render json: @profile
+    render json: @profiles
   end
 
   # GET /profiles/1

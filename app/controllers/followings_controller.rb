@@ -3,7 +3,7 @@ class FollowingsController < OpenReadController
 
   # GET /followings
   def index
-    @followings = current_user.profile.followings
+    @followings = current_user.Followings.all
 
     render json: @followings
   end
